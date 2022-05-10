@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Episode } from '../episode.model';
+import { User } from '../user.model';
 
 @Component({
   selector: 'app-sidebar',
@@ -10,8 +12,9 @@ import { Observable } from 'rxjs';
 export class SidebarComponent implements OnInit {
 
   loading: boolean = false;
-
   lista: string[] = ["lezione1", "lezione2", "lezione3", "lezione4"];
+  users: User[] = new Array();
+  episode: Episode | undefined;
 
   constructor(public http: HttpClient) { }
 
@@ -24,15 +27,17 @@ export class SidebarComponent implements OnInit {
   //Observable tipologia di oggetto che fa la chiamata e attende una risposta
   loadUser() : void {
     this.loading = true;
-    this.http.get('https://test.craftuniversity.it/api.php?request=users').subscribe(res => {
+    this.http.get<User[]>('https://test.craftuniversity.it/api.php?request=users').subscribe(res => {
       console.log(res);
+      this.users = res;
       this.loading = false;
     });
   }
   loadEpidsodeData(title: string, username: string): void {
     this.loading = true;
-    this.http.get('https://test.craftuniversity.it/api.php?request=currentEp&title=' + title + '&username=' + username).subscribe(res => {
+    this.http.get<Episode>('https://test.craftuniversity.it/api.php?request=currentEp&title=' + title + '&username=' + username).subscribe(res => {
       this.loading = false;
+      this.episode = res;
     });
   }
   //attivato solo qunado observable riceve la risposte

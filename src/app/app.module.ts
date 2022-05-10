@@ -8,7 +8,10 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import localeIt from '@angular/common/locales/it';
 import { registerLocaleData } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
+import { MainComponent } from './main/main.component';
+import { BlogComponent } from './blog/blog.component';
+import { PageComponent } from './page/page.component'
 
 registerLocaleData(localeIt, 'it');
 
@@ -16,7 +19,10 @@ registerLocaleData(localeIt, 'it');
   declarations: [
     AppComponent,
     HomeComponent,
-    SidebarComponent
+    SidebarComponent,
+    MainComponent,
+    BlogComponent,
+    PageComponent
   ],
   imports: [
     BrowserModule,
