@@ -1,3 +1,4 @@
+import { ValueConverter } from '@angular/compiler/src/render3/view/template';
 import { Component, Input, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
@@ -14,6 +15,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
   today: Date;
   money: number;
   show: boolean = false;
+  color: string = "black";
+  size: string = "none"
   //richiama elemento generico in typescript
   //richiamo elemento about in html, metto nome attributo e il tipo
   //serve a stampare in console il contenuto nel quale è presente
@@ -52,9 +55,28 @@ export class HomeComponent implements OnInit, AfterViewInit {
       console.log("ciao");
     }
   }
+  helloColor(field: HTMLSelectElement){
+    if (field.value == "1"){
+      this.color = "red";
+    } else if (field.value == "2") {
+      this.color = "green";
+    } else if (field.value == "3") {
+      this.color ="blue";
+    }
+  }
+
+  helloSize(field: HTMLSelectElement) {
+    if (field.value == "1") {
+      this.size = "big";
+    } else if (field.value == "2") {
+      this.size = "small";
+    } else {
+      this.size = "none";
+    }
+  }
+
   //stampa codice html in console
   printElement(): void {
     console.log(this.aboutElement.nativeElement);
   }
-
 }

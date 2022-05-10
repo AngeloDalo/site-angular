@@ -16,21 +16,28 @@
 <div #about *ngIf="show">
 	<h2>Ciao {{user == null ? 'Utente Sconosciuto' : user}}</h2>
 
-	<!-- <p class="ciao bg-info" [ngClass]="{'big' : size == 'big', 'small' : size == 'small'}"> -->
-  <p class="ciao bg-info">
+	<p class="ciao bg-info" [ngClass]="{'big' : size == 'big', 'small' : size == 'small'}" [style.color]="color">
+  <!-- <p class="ciao bg-info" [style.color]="color"> -->
 		{{today | date: 'dd EEEE MMMM yyyy HH:mm:ss'}}
 		{{money | currency}}
 
 		Gente in cerca di se stessi nell'intento di trovare sfogo nell'informatica e nelle parole poco religiose
 		pronunciate durante la fase di sviluppo del software: ciao
 
-    <button (click)="printElement()">Print</button>
-    <select (change)="hello(selectField)" #selectField>
+    <select (change)="hello(selectField1)" #selectField1>
       <option value="1">Saluta con l'alert</option>
       <option value="2">Saluta in console</option>
     </select>
-		<!-- <button (click)="printElement()">Print</button>
-		<select (change)="hello()" [formControl]="selectField">
+
+    <button (click)="printElement()">Print</button>
+
+    <select (change)="helloColor(selectField2)" #selectField2>
+      <option value="1">rosso</option>
+      <option value="2">verde</option>
+      <option value="3">blue</option>
+    </select>
+
+		<select (change)="helloSize(selectField3)" #selectField3>
 			<option value="1">Grande</option>
 			<option value="2">Piccolo</option>
 			<option value="3">Reset</option>
