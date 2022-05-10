@@ -11,7 +11,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MainComponent } from './main/main.component';
 import { BlogComponent } from './blog/blog.component';
-import { PageComponent } from './page/page.component'
+import { PageComponent } from './page/page.component';
+import { Page404Component } from './page404/page404.component'
 
 registerLocaleData(localeIt, 'it');
 
@@ -22,7 +23,8 @@ registerLocaleData(localeIt, 'it');
     SidebarComponent,
     MainComponent,
     BlogComponent,
-    PageComponent
+    PageComponent,
+    Page404Component
   ],
   imports: [
     BrowserModule,

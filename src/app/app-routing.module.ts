@@ -4,6 +4,7 @@ import { BlogComponent } from './blog/blog.component';
 import { HomeComponent } from './home/home.component';
 import { MainComponent } from './main/main.component';
 import { PageComponent } from './page/page.component';
+import { Page404Component } from './page404/page404.component';
 
 const routes: Routes = [
   {
@@ -19,9 +20,13 @@ const routes: Routes = [
     component: BlogComponent,
   },
   {
-    path: 'page',
-    component: PageComponent,
+    path: 'page/:user/:id',
+    component: PageComponent
   },
+  {
+    path: '**',
+    component: Page404Component
+  }
 ];
 
 @NgModule({
