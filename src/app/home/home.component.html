@@ -37,7 +37,12 @@
       <option value="3">blue</option>
     </select>
 
-		<select (change)="helloSize(selectField3)" #selectField3>
+    <select (change)="helloSize()" [formControl]="selectField">
+      <option value="1">Grande</option>
+			<option value="2">Piccolo</option>
+			<option value="3">Reset</option>
+    </select>
+		<!-- <select (change)="helloSize(selectField3)" #selectField3>
 			<option value="1">Grande</option>
 			<option value="2">Piccolo</option>
 			<option value="3">Reset</option>
@@ -49,14 +54,14 @@
 <div class="mainpage">
 	<h1>Esempio fi Form</h1>
 	<!-- form -->
-	<!-- <div class="formContainer">
+	<div class="formContainer">
 		<form (ngSubmit)="send()" [formGroup]="form">
 			<input class="form-control" type="text" (input)="checkUser()" placeholder="username" formControlName="user">
 			<input class="form-control"type="email" placeholder="E-Mail" formControlName="email">
 			<input class="form-control" type="date" placeholder="Data di nascita" formControlName="date">
 			<input type="submit" value="Invia">
 		</form>
-	</div> -->
+	</div>
 	<br>
 
 	<p>Usa <kbd>Ctrl + C</kbd> per copiare e <kbd>Ctrl + V</kbd> per incollare!</p><br>
