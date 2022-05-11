@@ -9,17 +9,90 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 })
 export class PageComponent implements OnInit {
 
-  title: string = "titolo";
-  user: string = "user";
-  constructor(public route: ActivatedRoute) { }
+  title: string | undefined;
+  user: string | undefined;
+
+  toUpload: any = new Array();
+  progress: number = 0;
+
+  error: string = "";
+
+  name: string = "";
+
+  constructor(public route: ActivatedRoute, public http: HttpClient, public router: Router) {
+    this.route.paramMap.subscribe((params: ParamMap) => {
+      // this.title = params.get('id');
+      // this.user = params.get('user');
+    })
+
+    // this.http.post("https://tutorial.craftuniversity.it/session.php", {
+    //   request: "check"
+    // }).subscribe(res => {
+    //   if (res[0] == "KO") {
+    //     localStorage.removeItem("name");
+    //     this.router.navigate(['/blog']);
+    //   } else {
+    //     this.name = localStorage.getItem("name");
+    //   }
+    // });
+  }
+
+  logout(){
+    this.http.post("https://tutorial.craftuniversity.it/session.php", {
+      request: "logout"
+    }).subscribe(res => {
+      localStorage.removeItem("name");
+      this.router.navigate(['/blog']);
+    });
+  }
 
   ngOnInit(): void {
-      // this.title = this.route.snapshot.paramMap.get('id');
-      // this.user = this.route.snapshot.paramMap.get('user');
-      // this.route.paramMap.subscribe((params: ParamMap) => {
-      //   this.title = params.get('id');
-      //   this.user = params.get('user');
-      // })
+    console.log("start")
   }
+
+  // onDrag(event) {
+  //   if (event.length > 1) {
+  //     this.error = "*Non è possibile caricare più di un file.";
+  //   } else {
+  //     let fileName = event[0].name;
+  //     let split = fileName.split(".");
+  //     let ext = split[split.length - 1].toLowerCase();
+  //     if (ext != "pdf") {
+  //       this.error = "*Il file caricato non risulta essere un file PDF";
+  //     } else {
+  //       if (event[0].size > 28000000) {
+  //         this.error = "*Il file è troppo grande, si prega di comprimerlo. (Max 12MB)";
+  //       } else {
+  //         this.toUpload.push(event[0]);
+  //         this.error = "";
+  //       }
+  //     }
+  //   }
+  // }
+
+  // send(): void {
+  //   this.progress = 0;
+  //   let formData = new FormData();
+  //   formData.append('file', this.toUpload[0], this.toUpload[0].name);
+  //   formData.append('request', "UPLOAD");
+  //   this.error = "";
+  //   this.http.post('http://tutorial.craftuniversity.it/upload.php', formData, {
+  //     reportProgress: true,
+  //     observe: 'events'
+  //   })
+  //     .subscribe(events => {
+  //       if (events.type == HttpEventType.UploadProgress) {
+  //         this.progress = Math.round(events.loaded / events.total * 100);
+  //       } else if (events.type === HttpEventType.Response) {
+  //         let res = events.body;
+  //         if (res[0] == "OK") {
+  //           this.toUpload = new Array();
+  //           this.error = "File caricato con successo!";
+  //         } else {
+  //           this.error = res[1];
+  //         }
+  //       }
+  //     });
+  // }
 
 }
