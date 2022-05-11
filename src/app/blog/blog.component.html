@@ -26,7 +26,7 @@
               <form>
                 <input #user type="text" placeholder="username">
                 <input #pass type="password" placeholder="password">
-                <!-- <button (click)="login(user.value, pass.value)">Login</button> -->
+                <button (click)="login(user.value, pass.value)">Login</button>
               </form>
 
             </div>
@@ -37,7 +37,7 @@
         <div class="col-lg-4">
           <div class="portfolio-info">
             <h3>User information By {{user}}</h3>
-            <input #userInput><button (click)="change(userInput)">click</button> -->
+            <input #userInput><button (click)="change(userInput)">click</button>
             <ul>
               <li *ngFor="let user of users">{{user.name}}</li>
             </ul>
