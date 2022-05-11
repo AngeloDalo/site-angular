@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { TutorialService } from '../tutorial.service';
+import { User } from '../user.model';
 
 @Component({
   selector: 'app-main',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainComponent implements OnInit {
 
-  constructor() { }
+  users: User[] = new Array();
+
+  constructor(public tservice: TutorialService) { }
 
   ngOnInit(): void {
+    this.tservice.downloadUsers().subscribe(res => {
+      this.users = res;
+    })
   }
 
 }
